@@ -38,8 +38,10 @@ proxychains rosinstall_generator \
     --deps \
     --flat \
     $packages > ws.rosinstall
+echo "[INFO] >>>>>> ws.rosinstall contents >>>>>>"
 cat ws.rosinstall
-PYTHONWARNINGS=ignore::yaml.YAMLLoadWarning wstool init -j8 src ws.rosinstall
+echo "[INFO] >>>>>> ws.rosinstall ends >>>>>>"
+wstool init -j8 src ws.rosinstall
 
 if [ -z "$BENCHBOT_MSGS_HASH" ]; then
   echo "No 'benchbot_msgs' HASH provided, reverting to default ('$BENCHBOT_MSGS_HASH_DEFAULT')"
