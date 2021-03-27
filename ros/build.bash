@@ -33,7 +33,7 @@ rm -rf "$ROS_BUILD"
 mkdir -v "$ROS_BUILD"
 pushd "$ROS_BUILD"
 
-proxychains rosinstall_generator \
+proxychains4 rosinstall_generator \
     --rosdistro "$ROS_DISTRO" \
     --deps \
     --flat \
