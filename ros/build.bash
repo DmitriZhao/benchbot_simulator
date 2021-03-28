@@ -48,9 +48,9 @@ if [ -z "$BENCHBOT_MSGS_HASH" ]; then
   BENCHBOT_MSGS_HASH="$BENCHBOT_MSGS_HASH_DEFAULT"
 fi
 echo "Using 'benchbot_msgs' commitish: $BENCHBOT_MSGS_HASH"
-proxychains -q git clone https://github.com/qcr/benchbot_msgs.git "$BENCHBOT_MSGS_LOCATION"
+proxychains4 -q git clone https://github.com/qcr/benchbot_msgs.git "$BENCHBOT_MSGS_LOCATION"
 pushd "$BENCHBOT_MSGS_LOCATION"
-proxychains -q git checkout "$BENCHBOT_MSGS_HASH"
+proxychains4 -q git checkout "$BENCHBOT_MSGS_HASH"
 popd
 
 catkin config \
