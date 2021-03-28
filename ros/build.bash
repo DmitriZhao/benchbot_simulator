@@ -41,7 +41,7 @@ proxychains4 rosinstall_generator \
 echo "[INFO] >>>>>> ws.rosinstall contents >>>>>>"
 cat ws.rosinstall
 echo "[INFO] >>>>>> ws.rosinstall ends >>>>>>"
-wstool init -j8 src ws.rosinstall
+proxychains4 wstool init -j8 src ws.rosinstall
 
 if [ -z "$BENCHBOT_MSGS_HASH" ]; then
   echo "No 'benchbot_msgs' HASH provided, reverting to default ('$BENCHBOT_MSGS_HASH_DEFAULT')"
