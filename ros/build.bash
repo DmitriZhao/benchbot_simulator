@@ -33,7 +33,7 @@ rm -rf "$ROS_BUILD"
 mkdir -v "$ROS_BUILD"
 pushd "$ROS_BUILD"
 
-proxychains4 rosinstall_generator \
+proxychains4 -q rosinstall_generator \
     --rosdistro "$ROS_DISTRO" \
     --deps \
     --flat \
@@ -41,16 +41,16 @@ proxychains4 rosinstall_generator \
 echo "[INFO] >>>>>> ws.rosinstall contents >>>>>>"
 cat ws.rosinstall
 echo "[INFO] >>>>>> ws.rosinstall ends >>>>>>"
-proxychains4 wstool init -j8 src ws.rosinstall
+proxychains4 -q wstool init -j8 src ws.rosinstall
 
 if [ -z "$BENCHBOT_MSGS_HASH" ]; then
   echo "No 'benchbot_msgs' HASH provided, reverting to default ('$BENCHBOT_MSGS_HASH_DEFAULT')"
   BENCHBOT_MSGS_HASH="$BENCHBOT_MSGS_HASH_DEFAULT"
 fi
 echo "Using 'benchbot_msgs' commitish: $BENCHBOT_MSGS_HASH"
-git clone https://github.com/qcr/benchbot_msgs.git "$BENCHBOT_MSGS_LOCATION"
+proxychains -q git clone https://github.com/qcr/benchbot_msgs.git "$BENCHBOT_MSGS_LOCATION"
 pushd "$BENCHBOT_MSGS_LOCATION"
-git checkout "$BENCHBOT_MSGS_HASH"
+proxychains -q git checkout "$BENCHBOT_MSGS_HASH"
 popd
 
 catkin config \
